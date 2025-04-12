@@ -1,9 +1,20 @@
-import React from 'react'
+'use client'
+
+//Custom Components
+import Home from './Pages/Home/Home'
+
+//Redux Imports
+import { store } from '@/store';
+
+//Third Party Imports
+import { Provider } from 'react-redux';
 
 const page = () => {
   return (
     <div>
-      This is Home Page
+      <Provider store={store}>
+        <Home />
+      </Provider>
     </div>
   )
 }
