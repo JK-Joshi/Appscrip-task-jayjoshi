@@ -18,6 +18,7 @@ interface Product {
     image: string;
     isOutofStock: boolean;
     isWishListed: boolean;
+    category: string
 }
 
 interface ProductsGridProps {

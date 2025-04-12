@@ -7,6 +7,7 @@ interface Products {
     image: string;
     isOutofStock: boolean;
     isWishListed: boolean;
+    category: string
 }
 
 interface ProductState {
