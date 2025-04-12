@@ -12,10 +12,12 @@ interface Products {
 
 interface ProductState {
     products: Products[];
+    isLoading: boolean
 }
 
 const initialState: ProductState = {
     products: [],
+    isLoading: false
 };
 
 const productSlice = createSlice({
@@ -25,8 +27,11 @@ const productSlice = createSlice({
         setProducts(state, action: PayloadAction<Products[]>) {
             state.products = action?.payload;
         },
+        setIsLoading(state, action: PayloadAction<boolean>) {
+            state.isLoading = action?.payload;
+        }
     }
 });
 
-export const { setProducts } = productSlice.actions;
+export const { setProducts, setIsLoading } = productSlice.actions;
 export default productSlice.reducer;

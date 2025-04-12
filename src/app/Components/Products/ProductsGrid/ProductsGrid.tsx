@@ -8,8 +8,9 @@ import Image from 'next/image';
 
 // Custom Hooks
 import { useBreakpoint } from '@/Utils/CustomHooks/useBreakpoints/useBreakpoints';
-import { useDispatch } from 'react-redux';
+import { useDispatch, useSelector } from 'react-redux';
 import { setProducts } from '@/store/Products/ProductsReducer';
+import { RootState } from '@/store';
 
 interface Product {
     id: number;
@@ -32,6 +33,7 @@ const ProductsGrid = ({ products, filteredProducts, setFilteredProducts }: Produ
     // Hooks
     const { isMobile } = useBreakpoint();
     const dispatch = useDispatch()
+    const isLoading = useSelector((state: RootState) => state.products.isLoading)
 
     useEffect(() => {
         // Enrich products with default values if missing
@@ -68,6 +70,14 @@ const ProductsGrid = ({ products, filteredProducts, setFilteredProducts }: Produ
         setProductList(updated);
         setFilteredProducts(updated);
     };
+
+    if (isLoading) {
+        return (
+            <div style={{ width: '100%', padding: '2rem', textAlign: 'center' }}>
+                <p style={{ fontSize: '1.2rem', fontWeight: '600' }}>Loading products...</p>
+            </div>
+        );
+    }
 
     return (
         <div
